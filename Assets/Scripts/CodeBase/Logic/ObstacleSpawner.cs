@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.StaticData;
@@ -14,6 +15,7 @@ namespace CodeBase.Logic
     public class ObstacleSpawner : MonoBehaviour
     {
         [SerializeField] private BiomeType _biomeType;
+        [SerializeField] private float _spawnDelay;
 
         [Space][Header("Spawn Areas")]
         [SerializeField] private GameObject _leftSideArea;
@@ -35,6 +37,7 @@ namespace CodeBase.Logic
 
         private DefRepository<ObstacleDef> _biome;
         private SpawnProbability _spawnProbability;
+        
         private IGameFactory _factory;
 
         private void Awake()
@@ -48,17 +51,18 @@ namespace CodeBase.Logic
         {
             CalculateAreas();
 
-            for (int i = 0; i < 10; i++)
-            {
-                Spawn();
-            }
+            StartCoroutine(Spawn());
         }
 
-        public void Spawn()
+        public IEnumerator Spawn()
         {
-            ObstacleDef obstacleDef = _spawnProbability.GetRandomObstacleDef();
-            Vector2 randomPos = RandomizeSpawnPosition(obstacleDef.SpawnArea);
-            GameObject obstacleObj = _factory.CreateObstacle(obstacleDef, randomPos);
+            while (true)
+            {
+                ObstacleDef obstacleDef = _spawnProbability.GetRandomObstacleDef();
+                Vector2 randomPos = RandomizeSpawnPosition(obstacleDef.SpawnArea);
+                GameObject obstacleObj = _factory.CreateObstacle(obstacleDef, randomPos, transform);
+                yield return new WaitForSeconds(_spawnDelay);
+            }
         }
 
         private void CalculateAreas()

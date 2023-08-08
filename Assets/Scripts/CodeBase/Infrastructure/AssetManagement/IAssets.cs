@@ -11,5 +11,6 @@ namespace CodeBase.Infrastructure.AssetManagement
         GameObject Instantiate(GameObject prefab, Vector2 at);
 
         GameObject Instantiate(GameObject prefab, Transform parent);
+        GameObject Instantiate(GameObject prefab, Transform parent, Vector2 at);
     }
 }

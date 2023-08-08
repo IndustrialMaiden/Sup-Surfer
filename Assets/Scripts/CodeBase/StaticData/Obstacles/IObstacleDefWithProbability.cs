@@ -10,6 +10,7 @@ namespace CodeBase.StaticData.Obstacles
         
         public SpawnArea SpawnArea { get; }
         public bool CanMoving { get; }
+        public MovementType MovementType { get; }
         public float MovingSpeed { get; }
         public float Probability { get; }
         public double Weight { get; set; }

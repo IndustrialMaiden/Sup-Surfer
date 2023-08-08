@@ -15,6 +15,7 @@ MonoBehaviour:
   _typeId: 1
   _prefab: {fileID: 9077819533438153400, guid: 390682267b734f54c96c4a0effb81cb1, type: 3}
   _spawnArea: 2
-  _canMoving: 0
+  _canMoving: 1
+  _movementType: 3
   _movingSpeed: 0
   _probability: 30

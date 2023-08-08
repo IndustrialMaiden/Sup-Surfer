@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Security.Cryptography;
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Logic.Background
 {
     public class BackgroundLoop : MonoBehaviour
     {
-        [SerializeField] private int _movingSpeed;
         [SerializeField] private float _offset;
-        
         [SerializeField] private GameObject[] _levels;
+        
+        private int _movingSpeed;
+
+        public GameObject FirstBackgroundChild;
 
         private Vector2 _screenBounds;
 
@@ -22,6 +26,7 @@ namespace CodeBase.Logic.Background
         private void Awake()
         {
             _factory = AllServices.Container.Single<IGameFactory>();
+            _movingSpeed = Constants.BackgroundMovingSpeed;
         }
 
         private void Start()
@@ -43,15 +48,13 @@ namespace CodeBase.Logic.Background
             float objectHeight = obj.GetComponent<SpriteRenderer>().bounds.size.y - _offset;
             int objectsNeeded = (int)Mathf.Ceil(_screenBounds.y * 2 / objectHeight);
 
-            //GameObject parent = Instantiate(obj, transform);
             GameObject parent = _factory.CreatePrefabWithParent(obj, transform);
             parent.transform.localScale = new Vector3(1, 1, 1);
-            //GameObject clone = Instantiate(obj);
             GameObject clone = _factory.CreatePrefabUnregistered(obj, Vector2.zero);
             for (int i = 0; i <= objectsNeeded; i++)
             {
-                //GameObject c = Instantiate(clone, parent.transform);
                 GameObject c = _factory.CreatePrefabWithParent(clone, parent.transform);
+                if (i == 0) FirstBackgroundChild = c;
                 
                 var position = obj.transform.position;
                 c.transform.position = new Vector3(

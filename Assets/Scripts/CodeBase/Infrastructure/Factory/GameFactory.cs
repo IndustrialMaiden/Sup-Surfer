@@ -50,18 +50,25 @@ namespace CodeBase.Infrastructure.Factory
             return gameObject;
         }
 
+        public GameObject CreatePrefabUnregistered(string path, Vector2 at)
+        {
+            GameObject gameObject = _assets.Instantiate(path, at);
+            return gameObject;
+        }
+
         public GameObject CreatePrefabWithParent(GameObject prefab, Transform parent)
         {
             GameObject gameObject = _assets.Instantiate(prefab, parent);
             return gameObject;
         }
 
-        public GameObject CreateObstacle(ObstacleDef obstacleDef, Vector2 at)
+        public GameObject CreateObstacle(ObstacleDef obstacleDef, Vector2 at, Transform parent)
         {
-            GameObject obstacle = InstantiateRegistered(obstacleDef.Prefab, at);
+            GameObject obstacle = _assets.Instantiate(obstacleDef.Prefab, parent, at);
             
             var component = obstacle.GetComponent<ObstacleComponent>();
             component.CanMoving = obstacleDef.CanMoving;
+            component.MovementType = obstacleDef.MovementType;
             component.MovingSpeed = obstacleDef.MovingSpeed;
 
             return obstacle;

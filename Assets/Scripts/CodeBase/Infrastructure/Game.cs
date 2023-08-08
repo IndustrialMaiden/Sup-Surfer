@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Input;
 using CodeBase.Infrastructure.LoadingScreen;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.States;
+using CodeBase.Logic.Background;
 using CodeBase.UI;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace CodeBase.Infrastructure
     {
         public static Player Player;
         public static Hud Hud;
+        public static BackgroundLoop Background;
         
         public readonly GameStateMachine StateMachine;
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)

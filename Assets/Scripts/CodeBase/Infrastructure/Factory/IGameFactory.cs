@@ -25,6 +25,7 @@ namespace CodeBase.Infrastructure.Factory
         GameObject CreateHud();
         GameObject CreatePrefabAtPosition(GameObject prefab, Vector2 at);
         GameObject CreatePrefabUnregistered(GameObject prefab, Vector2 at);
+        GameObject CreatePrefabUnregistered(string path, Vector2 at);
         GameObject CreatePrefabWithParent(GameObject prefab, Transform parent);
         /// <summary>
         /// Метод, создающий объекты по ID, после чего получает компонент управления и конструирует объект параметрами статик даты
@@ -32,7 +33,7 @@ namespace CodeBase.Infrastructure.Factory
         /// <param name="obstacleId"></param>
         /// <param name="at"></param>
         /// <returns></returns>
-        GameObject CreateObstacle(ObstacleDef obstacleDef, Vector2 at);
+        GameObject CreateObstacle(ObstacleDef obstacleDef, Vector2 at, Transform parent);
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         /// <summary>

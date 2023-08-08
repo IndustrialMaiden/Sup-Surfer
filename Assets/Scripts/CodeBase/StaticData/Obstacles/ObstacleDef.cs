@@ -11,6 +11,7 @@ namespace CodeBase.StaticData.Obstacles
         [SerializeField] private GameObject _prefab;
         [SerializeField] private SpawnArea _spawnArea;
         [SerializeField] private bool _canMoving;
+        [SerializeField] private MovementType _movementType;
         [SerializeField] private float _movingSpeed;
         [SerializeField] [Range(0f, 100f)] private float _probability;
         private double _weight;
@@ -20,6 +21,7 @@ namespace CodeBase.StaticData.Obstacles
 
         public SpawnArea SpawnArea => _spawnArea;
         public bool CanMoving => _canMoving;
+        public MovementType MovementType => _movementType;
 
         public float MovingSpeed => _canMoving ? _movingSpeed : 0f;
         public float Probability => _probability;

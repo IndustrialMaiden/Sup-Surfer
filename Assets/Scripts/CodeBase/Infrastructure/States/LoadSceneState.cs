@@ -1,6 +1,8 @@
-﻿using CodeBase.Infrastructure.Factory;
+﻿using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.LoadingScreen;
 using CodeBase.Infrastructure.Services.Progress;
+using CodeBase.Logic.Background;
 using CodeBase.UI;
 using CodeBase.UI.Services.Factory;
 using UnityEngine;
@@ -42,8 +44,13 @@ namespace CodeBase.Infrastructure.States
         private void OnLoaded()
         {
             _uiFactory.CreateUIRoot();
-            Game.Player = _gameFactory.CreatePlayer(Vector2.zero).GetComponent<Player>();
+            Game.Player = _gameFactory.CreatePlayer(new Vector2(0, -3.5f)).GetComponent<Player>();
             Game.Hud = _gameFactory.CreateHud().GetComponent<Hud>();
+            Game.Background = _gameFactory.CreatePrefabUnregistered(AssetPath.BackgroundPath, Vector2.zero)
+                .GetComponent<BackgroundLoop>();
+            
+            _gameFactory.CreatePrefabUnregistered(AssetPath.PacificSpawnerPath, Vector2.zero);
+            
             // Загрузка объектов после загрузки сцены
             // GameObject something = _gameFactory.CreateSomething(Vector3.zero);
 

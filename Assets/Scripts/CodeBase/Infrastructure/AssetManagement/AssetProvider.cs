@@ -25,5 +25,10 @@ namespace CodeBase.Infrastructure.AssetManagement
         {
             return Object.Instantiate(prefab, parent);
         }
+
+        public GameObject Instantiate(GameObject prefab, Transform parent, Vector2 at)
+        {
+            return Object.Instantiate(prefab, at, Quaternion.identity, parent);
+        }
     }
 }
