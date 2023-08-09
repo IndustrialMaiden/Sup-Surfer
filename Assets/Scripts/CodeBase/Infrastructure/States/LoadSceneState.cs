@@ -2,7 +2,9 @@
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.LoadingScreen;
 using CodeBase.Infrastructure.Services.Progress;
+using CodeBase.Logic;
 using CodeBase.Logic.Background;
+using CodeBase.StaticData.Biomes;
 using CodeBase.UI;
 using CodeBase.UI.Services.Factory;
 using UnityEngine;
@@ -46,14 +48,22 @@ namespace CodeBase.Infrastructure.States
             _uiFactory.CreateUIRoot();
             Game.Player = _gameFactory.CreatePlayer(new Vector2(0, -3.5f)).GetComponent<Player>();
             Game.Hud = _gameFactory.CreateHud().GetComponent<Hud>();
-            Game.Background = _gameFactory.CreatePrefabUnregistered(AssetPath.BackgroundPath, Vector2.zero)
+            Game.Background1 = _gameFactory.CreatePrefabUnregistered(AssetPath.PacificBackground, Vector2.zero)
+                .GetComponent<BackgroundLoop>();
+            Game.Background2 = _gameFactory.CreatePrefabUnregistered(AssetPath.MistyBackground, Vector2.zero)
+                .GetComponent<BackgroundLoop>();
+            Game.Background3 = _gameFactory.CreatePrefabUnregistered(AssetPath.DarkBackground, Vector2.zero)
+                .GetComponent<BackgroundLoop>();
+            Game.Background4 = _gameFactory.CreatePrefabUnregistered(AssetPath.SpaceBackground, Vector2.zero)
                 .GetComponent<BackgroundLoop>();
             
-            _gameFactory.CreatePrefabUnregistered(AssetPath.PacificSpawnerPath, Vector2.zero);
-            
-            // Загрузка объектов после загрузки сцены
-            // GameObject something = _gameFactory.CreateSomething(Vector3.zero);
+            var pacificSpawner = _gameFactory.CreatePrefabUnregistered(AssetPath.PacificSpawner, Vector2.zero)
+                .GetComponent<ObstacleSpawner>();
 
+            var gameController =  _gameFactory.CreatePrefabUnregistered(AssetPath.GameController, Vector2.zero)
+                .GetComponent<GameController>();
+
+            gameController.Spawner = pacificSpawner;
 
             InformProgressReaders();
 

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Security.Cryptography;
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.StaticData;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CodeBase.Logic.Background
@@ -23,6 +25,46 @@ namespace CodeBase.Logic.Background
 
         private IGameFactory _factory;
 
+        private float alpha = 1f;
+
+        public void Destroy()
+        {
+            StartCoroutine(DestroyBackground());
+        }
+
+        private IEnumerator DestroyBackground()
+        {
+            /*var childsSpritesRenderer = _childPositions[_currentLevel].Parent
+                .GetComponentsInChildren<SpriteRenderer>();
+            
+            while (childsSpritesRenderer[^1].color.a > 0)
+            {
+                foreach (var spriteRenderer in childsSpritesRenderer)
+                {
+                    var color = spriteRenderer.color;
+                    color.a -= 0.02f;
+                    spriteRenderer.color = color;
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }*/
+
+            while (alpha > 0)
+            {
+                foreach (var child in _childPositions)
+                {
+                    var childsSpritesRenderer = child.Parent.GetComponentsInChildren<SpriteRenderer>();
+                    foreach (var spriteRenderer in childsSpritesRenderer)
+                    {
+                        var color = spriteRenderer.color;
+                        alpha = color.a -= 0.02f;
+                        spriteRenderer.color = color;
+                        yield return new WaitForSeconds(0.01f);
+                    }
+                }
+            }
+            Destroy(gameObject);
+        }
+
         private void Awake()
         {
             _factory = AllServices.Container.Single<IGameFactory>();
@@ -31,16 +73,20 @@ namespace CodeBase.Logic.Background
 
         private void Start()
         {
+            ConstructBackground();
+        }
+
+        private void ConstructBackground()
+        {
             _screenBounds = Camera.main.ScreenToWorldPoint(
                 new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-            
+
             _childPositions = new ParentChildPositions[_levels.Length];
 
             for (int i = 0; i < _levels.Length; i++)
             {
                 _childPositions[i] = ConstructBackgroundSize(_levels[i]);
             }
-            
         }
 
         private ParentChildPositions ConstructBackgroundSize(GameObject obj)

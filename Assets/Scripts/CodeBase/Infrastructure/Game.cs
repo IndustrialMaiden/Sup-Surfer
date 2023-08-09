@@ -13,12 +13,25 @@ namespace CodeBase.Infrastructure
     {
         public static Player Player;
         public static Hud Hud;
-        public static BackgroundLoop Background;
+        public static BackgroundLoop Background1;
+        public static BackgroundLoop Background2;
+        public static BackgroundLoop Background3;
+        public static BackgroundLoop Background4;
         
         public readonly GameStateMachine StateMachine;
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
             StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, AllServices.Container);
+        }
+        
+        public static void Pause()
+        {
+            Time.timeScale = 0f;
+        }
+
+        public static void Resume()
+        {
+            Time.timeScale = 1f;
         }
     }
 }

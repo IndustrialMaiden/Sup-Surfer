@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7120142759842807263}
   - component: {fileID: 5634857898373623819}
   m_Layer: 0
-  m_Name: Background
+  m_Name: MistyBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d47b3cb1424b1f994e21cfb271de64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movingSpeed: 5
   _offset: 0.25
   _levels:
-  - {fileID: 6998137118030144212, guid: da250033f9d3ec24da841518bf7f4883, type: 3}
+  - {fileID: 6998137118030144212, guid: 17f21ce31e488fd4fb45a0ff2043d6b4, type: 3}
+  FirstBackgroundChild: {fileID: 0}

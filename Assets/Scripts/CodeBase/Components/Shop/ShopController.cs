@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
@@ -125,4 +125,4 @@ namespace CodeBase.Components.Shop
             _trash.Dispose();
         }
     }
-}
+}*/

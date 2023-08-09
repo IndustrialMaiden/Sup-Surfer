@@ -1,4 +1,4 @@
-using CodeBase.Infrastructure;
+/*using CodeBase.Infrastructure;
 using CodeBase.Utils.Disposables;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,4 +30,4 @@ namespace CodeBase.UI.Windows
             _trash.Dispose();
         }
     }
-}
+}*/

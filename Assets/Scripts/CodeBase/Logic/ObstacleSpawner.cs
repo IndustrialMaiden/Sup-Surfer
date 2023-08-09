@@ -56,6 +56,11 @@ namespace CodeBase.Logic
 
         public IEnumerator Spawn()
         {
+            if (_biomeType != BiomeType.Pacific)
+            {
+                yield return new WaitForSeconds(Constants.ChangingBiomeDelay);
+            }
+
             while (true)
             {
                 ObstacleDef obstacleDef = _spawnProbability.GetRandomObstacleDef();

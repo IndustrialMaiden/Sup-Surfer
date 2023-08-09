@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Progress;
@@ -90,4 +90,4 @@ namespace CodeBase.Components.Shop
             _trash.Dispose();
         }
     }
-}
+}*/

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Factory;
 using CodeBase.StaticData;
 using UnityEngine;
 
@@ -82,11 +84,10 @@ namespace CodeBase.Logic
         {
             float frequency = 10f;
             float magnitude = 0.05f;
-            
+
             while (true)
             {
-                var position = transform.position;
-                transform.position = position + transform.right * Mathf.Sin(Time.time * frequency) * magnitude;
+                transform.position += (transform.right * Mathf.Sin(Time.time * frequency) * magnitude) * Time.timeScale;
                 yield return null;
             }
         }
