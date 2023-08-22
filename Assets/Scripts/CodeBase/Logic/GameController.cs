@@ -3,6 +3,7 @@ using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Logic.Background;
 using CodeBase.Utils.Disposables;
 using GamePush;
 using UnityEngine;
@@ -11,6 +12,10 @@ namespace CodeBase.Logic
 {
     public class GameController : MonoBehaviour
     {
+        private const string PacificBack = "PacificBack";
+        private const string MistyBack = "MistyBack";
+        private const string DarkBack = "DarkBack";
+        
         public ObstacleSpawner Spawner;
         
         private Player _player;
@@ -32,21 +37,33 @@ namespace CodeBase.Logic
 
         private void OnPhase2()
         {
-            Game.Background1.Destroy();
+            var pacificBack = GameObject.FindGameObjectsWithTag(PacificBack);
+            foreach (var back in pacificBack)
+            {
+                back.GetComponent<BackgroundDestroy>().Destroy();
+            }
             Destroy(Spawner.gameObject);
             Spawner = _gameFactory.CreatePrefabUnregistered(AssetPath.MistySpawner, Vector2.zero)
                 .GetComponent<ObstacleSpawner>();
         }
         private void OnPhase3()
         {
-            Game.Background2.Destroy();
+            var mistyBack = GameObject.FindGameObjectsWithTag(MistyBack);
+            foreach (var back in mistyBack)
+            {
+                back.GetComponent<BackgroundDestroy>().Destroy();
+            }
             Destroy(Spawner.gameObject);
             Spawner = _gameFactory.CreatePrefabUnregistered(AssetPath.DarkSpawner, Vector2.zero)
                 .GetComponent<ObstacleSpawner>();
         }
         private void OnPhase4()
         {
-            Game.Background3.Destroy();
+            var darkBack = GameObject.FindGameObjectsWithTag(DarkBack);
+            foreach (var back in darkBack)
+            {
+                back.GetComponent<BackgroundDestroy>().Destroy();
+            }
             Destroy(Spawner.gameObject);
             Spawner = _gameFactory.CreatePrefabUnregistered(AssetPath.SpaceSpawner, Vector2.zero)
                 .GetComponent<ObstacleSpawner>();

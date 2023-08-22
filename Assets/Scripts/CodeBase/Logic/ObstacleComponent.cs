@@ -52,10 +52,8 @@ namespace CodeBase.Logic
 
         private void MoveWithBackground()
         {
-            var position = transform.position;
-            transform.position = Vector3.MoveTowards(position,
-                position + new Vector3(0, -Constants.BackgroundMovingSpeed, 0),
-                Constants.BackgroundMovingSpeed * Time.deltaTime);
+            var _movement = Vector3.down * (40 / 10) * Time.deltaTime;
+            transform.Translate(_movement);
         }
         
         private IEnumerator LeftToRightMovement()

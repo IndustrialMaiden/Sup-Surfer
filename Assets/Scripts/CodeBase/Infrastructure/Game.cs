@@ -13,11 +13,7 @@ namespace CodeBase.Infrastructure
     {
         public static Player Player;
         public static Hud Hud;
-        public static BackgroundLoop Background1;
-        public static BackgroundLoop Background2;
-        public static BackgroundLoop Background3;
-        public static BackgroundLoop Background4;
-        
+
         public readonly GameStateMachine StateMachine;
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
