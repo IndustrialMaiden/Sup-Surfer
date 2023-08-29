@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CodeBase.UI
 {
-    public class Hud : MonoBehaviour
+    public class HudControler : MonoBehaviour
     {
         [SerializeField] private TMP_Text _pointsText;
 

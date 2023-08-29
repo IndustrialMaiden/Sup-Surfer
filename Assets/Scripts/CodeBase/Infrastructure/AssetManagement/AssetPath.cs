@@ -18,6 +18,6 @@
         public const string SfxPrefab = "Infrastructure/Prefabs/Audio/Sfx";
         public const string BiomesPath = "Biomes";
         public const string ObstaclesPath = "Obstacles";
-        public const string WindowStaticData = "StaticData/WindowStaticData";
+        public const string WindowStaticData = "StaticData/Windows/WindowStaticData";
     }
 }

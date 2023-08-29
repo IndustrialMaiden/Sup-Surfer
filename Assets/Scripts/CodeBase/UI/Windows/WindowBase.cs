@@ -36,7 +36,7 @@ namespace CodeBase.UI.Windows
 
         private void Awake() => OnAwake();
 
-        private void Start()
+        protected virtual void Start()
         {
             Initialize();
             SubscribeUpdates();

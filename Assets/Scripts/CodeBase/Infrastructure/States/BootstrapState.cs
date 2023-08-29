@@ -8,6 +8,7 @@ using CodeBase.Infrastructure.Services.Audio;
 using CodeBase.Infrastructure.Services.Localization;
 using CodeBase.Infrastructure.Services.Progress;
 using CodeBase.Infrastructure.Services.SaveLoad;
+using CodeBase.Infrastructure.Services.SceneChanger;
 using CodeBase.StaticData;
 using CodeBase.UI.Services.Factory;
 using CodeBase.UI.Services.Windows;
@@ -68,6 +69,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IInputService>(InputService());
             RegisterAudioService();
             _services.RegisterSingle<IAdsService>(new AdsService(_services.Single<IAudioService>()));
+            _services.RegisterSingle<ISceneChangerService>(new SceneChangerService(_stateMachine, _sceneLoader));
         }
 
         private static IInputService InputService()

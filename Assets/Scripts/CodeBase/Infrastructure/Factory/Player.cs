@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure.Factory
         private readonly string ObstacleTag = "Obstacle";
         
         public IntProperty Score = new IntProperty();
-        public bool IsAlive { get; private set; } = true;
+        public bool IsAlive { get; set; } = true;
         private Action _enterObstacleAction;
 
         private Action _phase2;
@@ -48,12 +48,12 @@ namespace CodeBase.Infrastructure.Factory
         private void Awake()
         {
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
-            Score.Value = 0;
         }
 
         private void Start()
         {
             StartCoroutine(AddPoints());
+            Score.Value = 0;
         }
 
         private IEnumerator AddPoints()
@@ -78,6 +78,11 @@ namespace CodeBase.Infrastructure.Factory
                     _phase4?.Invoke();
                 }
             }
+        }
+
+        public void OnPlayerRestart()
+        {
+            StartCoroutine(AddPoints());
         }
 
         private void OnTriggerEnter2D(Collider2D obstacle)

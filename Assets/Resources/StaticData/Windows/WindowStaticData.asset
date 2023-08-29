@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: WindowStaticData
   m_EditorClassIdentifier: 
   Configs:
+  - WindowId: 1
+    Prefab: {fileID: 6892893838246965473, guid: 93cae19131821144d83a0b535111942b, type: 3}
+  - WindowId: 2
+    Prefab: {fileID: 624799985084280883, guid: 1a35f9b417fbff341b1c729fff7df65a, type: 3}
   - WindowId: 3
     Prefab: {fileID: 0}
+  - WindowId: 4
+    Prefab: {fileID: 8311262342534049376, guid: 815c317edf7702e4c95b2e01688f4432, type: 3}

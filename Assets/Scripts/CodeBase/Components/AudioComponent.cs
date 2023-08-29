@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.Components
 {
+    [RequireComponent(typeof(AudioSource))]
     public class AudioComponent : MonoBehaviour
     {
         [SerializeField] public AudioSource Source;

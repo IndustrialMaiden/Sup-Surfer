@@ -40,7 +40,7 @@ namespace CodeBase.StaticData.Localization
         {
             if (!operation.isDone) return;
             
-            Debug.Log("Patients data loaded");
+            Debug.Log("Localization data loaded");
             _textData = _request.downloadHandler.text;
             
             ParseData();

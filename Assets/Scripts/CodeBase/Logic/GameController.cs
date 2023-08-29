@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Logic.Background;
+using CodeBase.UI.Services.Factory;
 using CodeBase.Utils.Disposables;
 using GamePush;
 using UnityEngine;
@@ -76,7 +77,7 @@ namespace CodeBase.Logic
 
         private void OnPLayerStopped()
         {
-            Game.Pause();
+            AllServices.Container.Single<IUIFactory>().CreateFinishMenu();
         }
 
         private void OnDestroy()

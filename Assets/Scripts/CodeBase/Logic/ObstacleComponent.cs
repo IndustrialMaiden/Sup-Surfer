@@ -4,6 +4,7 @@ using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.StaticData;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CodeBase.Logic
 {
@@ -80,7 +81,8 @@ namespace CodeBase.Logic
         }
         private IEnumerator UpToDownSinusMovement()
         {
-            float frequency = 10f;
+            float frequency = Random.Range(10f - 1f, 10f + 1f);
+            //float frequency = 10f;
             float magnitude = 0.05f;
 
             while (true)

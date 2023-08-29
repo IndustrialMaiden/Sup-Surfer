@@ -24,6 +24,18 @@ namespace CodeBase.UI.Services.Factory
         
         public void CreateUIRoot() => _uiRoot = _assets.Instantiate(AssetPath.UIRoot);
 
+        public void CreateInitialScreen()
+        {
+            WindowConfig config = _staticData.ForWindow(WindowId.Initial);
+            Object.Instantiate(config.Prefab, _uiRoot.transform).Construct(_playerProgress);
+        }
+        
+        public void CreateInstructionsScreen()
+        {
+            WindowConfig config = _staticData.ForWindow(WindowId.Instructions);
+            Object.Instantiate(config.Prefab, _uiRoot.transform).Construct(_playerProgress);
+        }
+
         public void CreatePauseMenu()
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Pause);
@@ -33,12 +45,6 @@ namespace CodeBase.UI.Services.Factory
         public void CreateFinishMenu()
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Finish);
-            Object.Instantiate(config.Prefab, _uiRoot.transform).Construct(_playerProgress);
-        }
-
-        public void CreateShop()
-        {
-            WindowConfig config = _staticData.ForWindow(WindowId.Shop);
             Object.Instantiate(config.Prefab, _uiRoot.transform).Construct(_playerProgress);
         }
     }

@@ -26,8 +26,8 @@ namespace CodeBase.UI.Services.Windows
                 case WindowId.Finish:
                     _uiFactory.CreateFinishMenu();
                     break;
-                case WindowId.Shop:
-                    _uiFactory.CreateShop();
+                case WindowId.Initial:
+                    _uiFactory.CreateInitialScreen();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(windowId), windowId, null);

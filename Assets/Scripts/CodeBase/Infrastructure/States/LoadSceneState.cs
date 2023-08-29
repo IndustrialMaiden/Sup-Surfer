@@ -13,6 +13,8 @@ namespace CodeBase.Infrastructure.States
 {
     public class LoadSceneState : IPayloadedState<string>
     {
+        private const string EmptyScene = "Empty";
+        
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
@@ -35,7 +37,13 @@ namespace CodeBase.Infrastructure.States
         {
             _curtain.Show();
             _gameFactory.CleanUp();
+            _sceneLoader.Load(EmptyScene, onLoaded: delegate { OnLevelLoaded(sceneName); });
             _sceneLoader.Load(sceneName, onLoaded: OnLoaded);
+        }
+
+        private void OnLevelLoaded(string sceneName)
+        {
+            _sceneLoader.Load(sceneName, OnLoaded);
         }
 
         public void Exit()
@@ -45,9 +53,12 @@ namespace CodeBase.Infrastructure.States
 
         private void OnLoaded()
         {
+            Game.Pause();
             _uiFactory.CreateUIRoot();
+            _uiFactory.CreateInstructionsScreen();
+            _uiFactory.CreateInitialScreen();
             Game.Player = _gameFactory.CreatePlayer(new Vector2(0, -3.5f)).GetComponent<Player>();
-            Game.Hud = _gameFactory.CreateHud().GetComponent<Hud>();
+            Game.HudControler = _gameFactory.CreateHud().GetComponent<HudControler>();
             _gameFactory.CreatePrefabUnregistered(AssetPath.PacificBackground, Vector2.zero);
             _gameFactory.CreatePrefabUnregistered(AssetPath.MistyBackground, Vector2.zero);
             _gameFactory.CreatePrefabUnregistered(AssetPath.DarkBackground, Vector2.zero);
