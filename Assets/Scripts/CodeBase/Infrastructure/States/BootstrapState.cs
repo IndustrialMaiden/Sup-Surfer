@@ -69,7 +69,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IInputService>(InputService());
             RegisterAudioService();
             _services.RegisterSingle<IAdsService>(new AdsService(_services.Single<IAudioService>()));
-            _services.RegisterSingle<ISceneChangerService>(new SceneChangerService(_stateMachine, _sceneLoader));
+            _services.RegisterSingle<ISceneChangerService>(new SceneChangerService(_stateMachine));
         }
 
         private static IInputService InputService()

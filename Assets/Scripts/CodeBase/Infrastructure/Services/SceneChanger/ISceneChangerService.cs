@@ -2,7 +2,7 @@
 {
     public interface ISceneChangerService : IService
     {
-        void Enter(string sceneName);
+        void LoadScene(string sceneName);
 
     }
 }

@@ -80,11 +80,6 @@ namespace CodeBase.Infrastructure.Factory
             }
         }
 
-        public void OnPlayerRestart()
-        {
-            StartCoroutine(AddPoints());
-        }
-
         private void OnTriggerEnter2D(Collider2D obstacle)
         {
             if (obstacle.gameObject.CompareTag(ObstacleTag))

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Logic.DragAndDropSystem
 {
@@ -9,6 +10,9 @@ namespace CodeBase.Logic.DragAndDropSystem
 
         private float _width;
         private float _height;
+
+        public bool _isFirstTouch;
+        public UnityEvent OnFirstTouch;
         
         private void Awake()
         {
@@ -20,6 +24,14 @@ namespace CodeBase.Logic.DragAndDropSystem
         {
             FindBoundries();
             SetPosition();
+        }
+
+        private void OnMouseOver()
+        {
+            if (Input.GetMouseButton(0) && !_isFirstTouch)
+            {
+                OnFirstTouch?.Invoke();
+            }
         }
 
         private void FindBoundries()

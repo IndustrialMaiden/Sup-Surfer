@@ -38,7 +38,6 @@ namespace CodeBase.Infrastructure.States
             _curtain.Show();
             _gameFactory.CleanUp();
             _sceneLoader.Load(EmptyScene, onLoaded: delegate { OnLevelLoaded(sceneName); });
-            _sceneLoader.Load(sceneName, onLoaded: OnLoaded);
         }
 
         private void OnLevelLoaded(string sceneName)
@@ -56,7 +55,10 @@ namespace CodeBase.Infrastructure.States
             Game.Pause();
             _uiFactory.CreateUIRoot();
             _uiFactory.CreateInstructionsScreen();
-            _uiFactory.CreateInitialScreen();
+            if (Game.IsFirstLaunch)
+            {
+                _uiFactory.CreateInitialScreen();
+            }
             Game.Player = _gameFactory.CreatePlayer(new Vector2(0, -3.5f)).GetComponent<Player>();
             Game.HudControler = _gameFactory.CreateHud().GetComponent<HudControler>();
             _gameFactory.CreatePrefabUnregistered(AssetPath.PacificBackground, Vector2.zero);

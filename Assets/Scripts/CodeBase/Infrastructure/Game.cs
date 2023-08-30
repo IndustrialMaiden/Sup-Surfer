@@ -13,6 +13,7 @@ namespace CodeBase.Infrastructure
     {
         public static Player Player;
         public static HudControler HudControler;
+        public static bool IsFirstLaunch = true;
 
         public readonly GameStateMachine StateMachine;
 

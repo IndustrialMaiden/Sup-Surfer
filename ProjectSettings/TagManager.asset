@@ -9,6 +9,7 @@ TagManager:
   - PacificBack
   - MistyBack
   - DarkBack
+  - DragController
   layers:
   - Default
   - TransparentFX

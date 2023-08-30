@@ -1,10 +1,11 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Audio;
 using UnityEngine;
 
 namespace CodeBase.UI.Windows
 {
-    public class InitialWindow : WindowBase
+    public class InitialScreen : WindowBase
     {
         private IAudioService _audioService;
         
@@ -18,6 +19,7 @@ namespace CodeBase.UI.Windows
         {
             _audioService.PlayOneShotSfx("");
             _audioService.PlayMusic("");
+            Game.IsFirstLaunch = false;
             Destroy(gameObject);
         }
 
